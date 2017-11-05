@@ -1,10 +1,14 @@
 package main.java.refactoringbook;
 
 public class Movie {
-    private String title;
-    private String priceCode;
+    public static final int CHILDRENS = 2;
+    public static final int REGULAR = 0;
+    public static final int NEW_RELEASE = 1;
 
-    public Movie(String title, String priceCode) {
+    private String title;
+    private int priceCode;
+
+    public Movie(String title, int priceCode) {
         this.title = title;
         this.priceCode = priceCode;
     }
@@ -17,11 +21,11 @@ public class Movie {
         this.title = title;
     }
 
-    public String getPriceCode() {
+    public int getPriceCode() {
         return priceCode;
     }
 
-    public void setPriceCode(String priceCode) {
+    public void setPriceCode(int priceCode) {
         this.priceCode = priceCode;
     }
 }
