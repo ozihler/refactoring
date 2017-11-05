@@ -5,21 +5,20 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
 public class CustomerTest {
     @Test
     public void test() {
-        List<Movie> movies = Arrays.asList(new Movie("Pulp Fiction", 2),
-                new Movie("Independence Day", 1),
-                new Movie("Spider Man", 0),
-                new Movie("Thor", 2),
-                new Movie("Avengers 2", 1),
-                new Movie("Avengers 1", 2),
-                new Movie("Newly Weds", 2),
-                new Movie("No country for old man", 0));
+        List<Movie> movies = Arrays.asList(new Movie("Pulp Fiction", PriceFactory.create(2)),
+                new Movie("Independence Day", PriceFactory.create(1)),
+                new Movie("Spider Man", PriceFactory.create(0)),
+                new Movie("Thor", PriceFactory.create(2)),
+                new Movie("Avengers 2", PriceFactory.create(1)),
+                new Movie("Avengers 1", PriceFactory.create(2)),
+                new Movie("Newly Weds", PriceFactory.create(2)),
+                new Movie("No country for old man", PriceFactory.create(0)));
 
         List<Rental> rentals = new ArrayList<>();
         for (Movie movie : movies) {
@@ -27,7 +26,7 @@ public class CustomerTest {
         }
 
         Customer customer = new Customer("Customer1", rentals);
-        customer.add(new Rental(new Movie("Independence Day 2", 2), 12));
+        customer.add(new Rental(new Movie("Independence Day 2", PriceFactory.create(2)), 12));
 
         assertEquals("Rental Record for Customer1\n" +
                 "\tPulp Fiction\t12.0\n" +

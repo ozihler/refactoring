@@ -5,21 +5,20 @@ public class Movie {
     private String title;
     private Price price;
 
-    public Movie(String title, int priceCode) {
+    public Movie(String title, Price price) {
         this.title = title;
-        this.price = Price.create(priceCode);
+        this.price = price;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public int getPriceCode() {
-        return price.getPriceCode();
-    }
-
     public double getCharge(int daysRented) {
         return price.getCharge(daysRented);
     }
 
+    public boolean isNewRelease() {
+        return price.isNewRelease();
+    }
 }

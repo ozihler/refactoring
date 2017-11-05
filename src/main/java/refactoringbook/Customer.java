@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-    String name;
-    List<Rental> rentals = new ArrayList<>();
+    private String name;
+    private List<Rental> rentals = new ArrayList<>();
 
     public Customer(String name, List<Rental> rentals) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Customer {
         String result = "Rental Record for " + name + "\n";
 
         for (Rental rental : this.rentals) {
-            result += "\t" + rental.getMovie().getTitle() + "\t" + rental.movie.getCharge(rental.getDaysRented()) + "\n";
+            result += "\t" + rental.getMovieTitle() + "\t" + rental.getRentalCharge() + "\n";
         }
         //add footer lines
         result += "Amount owed is " + getTotalAmount() + "\n";
@@ -32,7 +32,7 @@ public class Customer {
     public String htmlStatement() {
         String result = "<h1>Rentals for <EM>" + name + "</EM></h1><p>\n";
         for (Rental rental : rentals) {
-            result += rental.getMovie().getTitle() + ":" + rental.movie.getCharge(rental.getDaysRented()) + "<br/>\n";
+            result += rental.getMovieTitle() + ":" + rental.getRentalCharge() + "<br/>\n";
         }
         //add footer lines
         result += "<p>Amount owed is " + getTotalAmount() + "</p>\n";
@@ -43,12 +43,12 @@ public class Customer {
     private double getTotalAmount() {
         double totalAmount = 0;
         for (Rental rental : rentals) {
-            totalAmount += rental.movie.getCharge(rental.getDaysRented());
+            totalAmount += rental.getRentalCharge();
         }
         return totalAmount;
     }
 
-    public int getFrequentRenterPoints() {
+    private int getFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         for (Rental rental : rentals) {
             frequentRenterPoints += rental.getFrequentRenterPoints();
