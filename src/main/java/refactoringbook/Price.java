@@ -1,34 +1,32 @@
 package main.java.refactoringbook;
 
-public class Price {
-    private int priceCode;
+public abstract class Price {
+    public static final int CHILDRENS = 2;
+    public static final int NEW_RELEASE = 1;
+    public static final int REGULAR = 0;
 
-    public Price(int priceCode) {
+    protected int priceCode;
+
+    Price(int priceCode) {
         this.priceCode = priceCode;
+    }
+
+    public static Price create(int priceCode) {
+        switch (priceCode) {
+            case REGULAR:
+                return new RegularPrice(priceCode);
+            case NEW_RELEASE:
+                return new NewReleasePrice(priceCode);
+            case CHILDRENS:
+                return new ChildrensPrice(priceCode);
+            default:
+        }
+        throw new RuntimeException("Not supported:" + priceCode);
     }
 
     public int getPriceCode() {
         return priceCode;
     }
 
-    public double getCharge(int daysRented) {
-        double thisAmount = 0;
-        //determine amount for each line
-        switch (getPriceCode()) {
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (daysRented > 2)
-                    thisAmount += (daysRented - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                thisAmount += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                thisAmount += 1.5;
-                if (daysRented > 3)
-                    thisAmount += (daysRented - 3) * 1.5;
-                break;
-        }
-        return thisAmount;
-    }
+    public abstract double getCharge(int daysRented);
 }
