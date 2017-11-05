@@ -27,6 +27,7 @@ public class CustomerTest {
         }
 
         Customer customer = new Customer("Customer1", rentals);
+        customer.add(new Rental(new Movie("Independence Day 2", 2), 12));
 
         assertEquals("Rental Record for Customer1\n" +
                 "\tPulp Fiction\t12.0\n" +
@@ -37,7 +38,8 @@ public class CustomerTest {
                 "\tAvengers 1\t12.0\n" +
                 "\tNewly Weds\t12.0\n" +
                 "\tNo country for old man\t14.0\n" +
-                "Amount owed is 136.0\n" +
-                "You earned 10 frequent renter points", customer.statement());
+                "\tIndependence Day 2\t15.0\n" +
+                "Amount owed is 151.0\n" +
+                "You earned 11 frequent renter points", customer.statement());
     }
 }
