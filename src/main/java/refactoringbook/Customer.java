@@ -31,7 +31,6 @@ public class Customer {
             double thisAmount = 0;
             Rental each = rentals.next();
             //determine amount for each line
-
             switch (each.getMovie().getPriceCode()) {
                 case Movie.REGULAR:
                     thisAmount += 2;
